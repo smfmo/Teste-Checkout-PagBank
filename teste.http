@@ -1,0 +1,33 @@
+## Criar Checkout no pagBank (Sandbox)
+
+POST https://sandbox.api.pagseguro.com/checkouts
+Authorization: Bearer 92de68c1-d123-42fa-be33-0d60def3958390c36cdc4a10956174a45186c40c0fd44a52-f543-43a7-8c65-edec58360c4a
+Content-Type: application/json
+
+{
+  "reference_id": "pedido123",
+  "customer": {
+    "name": "João da Silva",
+    "email": "joao@email.com",
+    "tax_id": "12345678909",
+    "phones": [
+      {
+        "country": "55",
+        "area": "11",
+        "number": "999999999",
+        "type": "MOBILE"
+      }
+    ]
+  },
+  "items": [
+    {
+      "name": "Camiseta Preta",
+      "quantity": 1,
+      "description": "camiseta polo preta gg",
+      "unit_amount": 5000
+    }
+  ],
+  "notification_urls": [
+    "https://meusite.com.br/notificacoes"
+  ]
+}

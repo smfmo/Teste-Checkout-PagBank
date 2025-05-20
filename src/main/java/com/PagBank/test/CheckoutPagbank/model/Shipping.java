@@ -1,10 +1,7 @@
 package com.PagBank.test.CheckoutPagbank.model;
 
 import com.PagBank.test.CheckoutPagbank.model.Enum.ShippingType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Embeddable
@@ -16,4 +13,10 @@ public class Shipping {
 
     @Column(name = "shipping_amount")
     private Integer amount;
+
+    @Embedded
+    private Address address;
+
+    @Embedded
+    private Box box;
 }

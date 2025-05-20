@@ -7,8 +7,12 @@ import lombok.Data;
 @Embeddable
 @Data
 public class Phone {
+
+    @Column(name = "phone_country_code")
+    private String country;
+
     @Column(name = "phone_area_code")
-    private String areaCode;
+    private String area;
 
     @Column(name = "phone_number")
     private String number;

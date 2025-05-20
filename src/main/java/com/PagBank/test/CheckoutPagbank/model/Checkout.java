@@ -4,6 +4,7 @@ import com.PagBank.test.CheckoutPagbank.model.Enum.CheckoutStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.*;
 
@@ -18,16 +19,16 @@ public class Checkout {
 
     @Column(name = "reference_id",
             length = 64)
-    private String referenceId;
+    private String reference_id;
 
     @Column(name = "expiration_date")
-    private Instant expirationDate;
+    private Timestamp expiration_date;
 
     @Embedded
     private Customer customer;
 
     @Column(name = "customer_modifiable")
-    private Boolean customerModifiable = true;
+    private Boolean customer_modifiable = true;
 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -35,10 +36,10 @@ public class Checkout {
     private List<Item> items = new ArrayList<>();
 
     @Column(name = "additional_amount")
-    private Integer additionalAmount = 0;
+    private Integer additional_amount;
 
     @Column(name = "discount_amount")
-    private Integer discountAmount = 0;
+    private Integer discount_amount;
 
     @Embedded
     private Shipping shipping;
@@ -47,31 +48,36 @@ public class Checkout {
     @CollectionTable(name = "checkout_payment_methods",
             joinColumns = @JoinColumn(name = "checkout_id"))
     @Column(name = "payment_method")
-    private Set<String> paymentMethods = new HashSet<>();
+    private Set<String> payment_methods = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "checkout_id")
-    private List<PaymentMethodConfig> paymentMethodsConfig = new ArrayList<>();
+    private List<PaymentMethodConfig> payment_methods_configs = new ArrayList<>();
 
     @Column(name = "redirect_url",
             length = 255)
-    private String redirectUrl;
+    private String redirect_url;
 
     @Column(name = "soft_descriptor",
             length = 17)
-    private String softDescriptor;
+    private String soft_descriptor;
 
     @Column(name = "return_url",
             length = 255)
-    private String returnUrl;
+    private String return_url;
+
+    @ElementCollection
+    @CollectionTable(name = "notification_urls", joinColumns = @JoinColumn(name = "checkout_id"))
+    @Column(name = "notification_url")
+    private List<String> notification_urls = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "checkout_payment_notification_urls", joinColumns = @JoinColumn(name = "checkout_id"))
-    @Column(name = "url")
-    private Set<String> paymentNotificationUrls = new HashSet<>();
+    @Column(name = "payment_notification_url")
+    private List<String> payment_notification_urls = new ArrayList<>();
 
     @Column(name = "created_at")
-    private Instant createdAt = Instant.now();
+    private Timestamp created_at;
 
     @Enumerated(EnumType.STRING)
     private CheckoutStatus status = CheckoutStatus.ACTIVE;

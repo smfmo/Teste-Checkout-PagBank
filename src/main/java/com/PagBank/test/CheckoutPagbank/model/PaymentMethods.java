@@ -1,18 +1,16 @@
 package com.PagBank.test.CheckoutPagbank.model;
 
+import com.PagBank.test.CheckoutPagbank.model.Enum.Brands;
 import com.PagBank.test.CheckoutPagbank.model.Enum.PaymentMethodType;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "payment_method_configs")
+@Table
 @Data
-public class PaymentMethodConfig {
-
+public class PaymentMethods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +19,7 @@ public class PaymentMethodConfig {
     private PaymentMethodType type;
 
     @ElementCollection
-    @CollectionTable(name = "payment_method_config_options",
-            joinColumns = @JoinColumn(name = "payment_method_config_id"))
-    private Set<ConfigOptions> config_options;
+    @CollectionTable(name = "payment_method_brands",
+            joinColumns = @JoinColumn(name = "payment_method_id"))
+    private Set<Brands> brands;
 }

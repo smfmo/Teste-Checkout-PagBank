@@ -16,8 +16,8 @@ public class Customer {
     @Column(name = "email", length = 60)
     private String email;
 
-    @Column(name = "tax_id",length = 11)
-    private String taxId;
+    @Column(name = "tax_id",length = 14)
+    private String tax_id;
 
     @Embedded
     private Phone phone;
