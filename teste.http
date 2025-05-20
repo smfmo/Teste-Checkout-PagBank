@@ -27,6 +27,23 @@ Content-Type: application/json
       "unit_amount": 5000
     }
   ],
+  "payment_methods":[
+    {
+      "type": "PIX"
+    }
+  ],
+  "payment_methods_configs": [
+    {
+      "type": "CREDIT_CARD",
+      "config_options": [
+        {
+          "option": "INSTALLMENTS_LIMIT",
+          "value": "10"
+        }
+      ]
+    }
+  ],
+
   "notification_urls": [
     "https://meusite.com.br/notificacoes"
   ]

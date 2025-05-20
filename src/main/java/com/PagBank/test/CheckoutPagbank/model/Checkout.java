@@ -44,11 +44,11 @@ public class Checkout {
     @Embedded
     private Shipping shipping;
 
-    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @CollectionTable(name = "checkout_payment_methods",
             joinColumns = @JoinColumn(name = "checkout_id"))
     @Column(name = "payment_method")
-    private Set<String> payment_methods = new HashSet<>();
+    private List<PaymentMethods> payment_methods = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "checkout_id")

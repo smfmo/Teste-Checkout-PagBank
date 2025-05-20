@@ -1,30 +1,35 @@
 package com.PagBank.test.CheckoutPagbank.service;
 
 import com.PagBank.test.CheckoutPagbank.model.Checkout;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PagBankService {
 
-    private final WebClient webClient;
+    private final RestTemplate restTemplate;
 
-    public PagBankService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder
-                .baseUrl("https://sandbox.api.pagseguro.com/checkouts")
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer 92de68c1-d123-42fa-be33-0d60def3958390c36cdc4a10956174a45186c40c0fd44a52-f543-43a7-8c65-edec58360c4a")
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .build();
+    // Token fornecido pelo sandbox do PagBank
+    private static final String BEARER_TOKEN = "92de68c1-d123-42fa-be33-0d60def3958390c36cdc4a10956174a45186c40c0fd44a52-f543-43a7-8c65-edec58360c4a";
+
+    // URL da API
+    private static final String PAGBANK_URL = "https://sandbox.api.pagseguro.com/checkouts";
+
+    public PagBankService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public Mono<String> criarCheckout(Checkout checkout){
-        return webClient.post()
-                .uri("/checkouts")
-                .bodyValue(checkout)
-                .retrieve()
-                .bodyToMono(String.class);
+    public ResponseEntity<String> criarCheckout(Checkout checkout) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(BEARER_TOKEN);
+
+        HttpEntity<Checkout> request = new HttpEntity<>(checkout, headers);
+
+        return restTemplate.postForEntity(PAGBANK_URL, request, String.class);
     }
 }
