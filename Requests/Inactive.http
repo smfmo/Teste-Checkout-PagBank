@@ -1,5 +1,5 @@
 ## Se ocorrer algum contratempo, pode-se inativar o checkout e depois reativá-lo
 
 POST https://sandbox.api.pagseguro.com/checkouts/{checkout_id}/inactivate
-Authorization: Bearer 92de68c1-d123-42fa-be33-0d60def3958390c36cdc4a10956174a45186c40c0fd44a52-f543-43a7-8c65-edec58360c4a
+Authorization: Bearer {{PAGBANK_TOKEN}}
 Content-Type: application/json

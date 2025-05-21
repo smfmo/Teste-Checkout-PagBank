@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#HTTP client arquivos
+http-client.private.env.json
+http-client.env.json
+*.private.env.json
