@@ -7,14 +7,14 @@ Content-Type: application/json
 {
   "reference_id": "pedido123",
   "customer": {
-    "name": "João da Silva",
-    "email": "joao@email.com",
+    "name": "Josivan Pereira",
+    "email": "Josivan@email.com",
     "tax_id": "12345678909",
     "phones": [
       {
         "country": "55",
-        "area": "11",
-        "number": "999999999",
+        "area": "61",
+        "number": "983363598",
         "type": "MOBILE"
       }
     ]
@@ -30,6 +30,12 @@ Content-Type: application/json
   "payment_methods":[
     {
       "type": "PIX"
+    },
+    {
+      "type": "CREDIT_CARD"
+    },
+    {
+      "type": "BOLETO"
     }
   ],
   "payment_methods_configs": [

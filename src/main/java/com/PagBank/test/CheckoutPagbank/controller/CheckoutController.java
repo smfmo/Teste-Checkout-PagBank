@@ -4,11 +4,7 @@ import com.PagBank.test.CheckoutPagbank.model.Checkout;
 import com.PagBank.test.CheckoutPagbank.service.PagBankService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +17,12 @@ public class CheckoutController {
     public ResponseEntity<String> criarCheckout(@RequestBody Checkout checkout) {
         return pagBankService.criarCheckout(checkout);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<String> getCheckout(@PathVariable String id){
+        return pagBankService.getCheckoutById(id);
+    }
+
 
 
 }

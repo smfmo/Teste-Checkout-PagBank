@@ -1,10 +1,7 @@
 package com.PagBank.test.CheckoutPagbank.service;
 
 import com.PagBank.test.CheckoutPagbank.model.Checkout;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,5 +28,17 @@ public class PagBankService {
         HttpEntity<Checkout> request = new HttpEntity<>(checkout, headers);
 
         return restTemplate.postForEntity(PAGBANK_URL, request, String.class);
+    }
+
+    public ResponseEntity<String> getCheckoutById(String id){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(BEARER_TOKEN);
+        RequestEntity<Void> requestEntity = RequestEntity
+                .get(PAGBANK_URL + "/" + id)
+                .headers(headers)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+
+        return restTemplate.exchange(requestEntity, String.class);
     }
 }

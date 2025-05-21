@@ -1,0 +1,4 @@
+## Ativar o checkout após tê-lo desativado
+POST https://sandbox.api.pagseguro.com/checkouts/CHEC_713DD51E-230A-43AB-96AD-5FB7A04499A3/activate
+Authorization: Bearer 92de68c1-d123-42fa-be33-0d60def3958390c36cdc4a10956174a45186c40c0fd44a52-f543-43a7-8c65-edec58360c4a
+Content-Type: application/json

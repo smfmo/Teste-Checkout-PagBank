@@ -13,4 +13,6 @@ spring:
     cache: false
 server:
   port: 8080
-
+pagbank:
+  api:
+    token: ${TOKEN_PAGBANK}

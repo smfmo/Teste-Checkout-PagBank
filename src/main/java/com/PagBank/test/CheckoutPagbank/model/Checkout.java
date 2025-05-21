@@ -15,7 +15,7 @@ public class Checkout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String checkout_id;
 
     @Column(name = "reference_id",
             length = 64)
