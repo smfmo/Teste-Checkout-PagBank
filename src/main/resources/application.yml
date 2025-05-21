@@ -13,6 +13,7 @@ spring:
     cache: false
 server:
   port: 8080
-pagbank:
+pagBank:
   api:
-    token: ${TOKEN_PAGBANK}
+    url: ${URL_SANDBOX_PAGBANK}
+    bearer_token: ${TOKEN_PAGBANK}
