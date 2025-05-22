@@ -53,7 +53,15 @@ public class PagBankService {
         return restTemplate.exchange(requestEntity, String.class);
     }
 
-    public ResponseEntity<String> ActivateCheckout(String id){
-        return null;
+    public ResponseEntity<String> activateCheckout(String id){
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(bearerToken);
+        RequestEntity<Void> requestEntity = RequestEntity
+                .post(pagBankUrl + "/" + id + "/activate")
+                .headers(header)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+        return restTemplate.exchange(requestEntity, String.class);
     }
 }
