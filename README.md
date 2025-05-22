@@ -30,12 +30,12 @@ O Checkout PagBank simplifica a oferta de métodos de pagamento, eliminando a ne
 
 ## 📦 Funcionalidades
 
-| Método HTTP | Endpoint              | Descrição                                                           |
-|-------------|-----------------------|---------------------------------------------------------------------|
-| `POST`      | `/pagbank/checkout`   | Cria um novo checkout                                               |
-| `GET`       | `/pagbank/{id}`       | Consulta um checkout por ID                                         |
-| `POST`      | `/pagbank/inactivate` | inativar o Checkout caso tenha algum contratempo                    |
-| `POST`      | `/pagbank/activate`   | Este Endpoint ativa o checkout novamente caso tenha sido desativado |
+| Método HTTP | Endpoint                   | Descrição                                                           |
+|-------------|----------------------------|---------------------------------------------------------------------|
+| `POST`      | `/pagbank/checkout`        | Cria um novo checkout                                               |
+| `GET`       | `/pagbank/{id}`            | Consulta um checkout por ID                                         |
+| `POST`      | `/pagbank/{id}/inactivate` | inativar o Checkout caso tenha algum contratempo                    |
+| `POST`      | `/pagbank/{id}/activate`   | Este Endpoint ativa o checkout novamente caso tenha sido desativado |
 
 ---
 

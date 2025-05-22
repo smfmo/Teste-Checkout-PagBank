@@ -23,6 +23,10 @@ public class CheckoutController {
         return pagBankService.getCheckoutById(id);
     }
 
+    @PostMapping("{id}/inactivate")
+    public ResponseEntity<String> inactivateCheckout(@PathVariable String id){
+        return pagBankService.inactivateCheckout(id);
+    }
 
 
 }

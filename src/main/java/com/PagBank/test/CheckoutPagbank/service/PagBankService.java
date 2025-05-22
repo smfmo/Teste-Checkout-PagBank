@@ -20,25 +20,40 @@ public class PagBankService {
     private String pagBankUrl;
 
     public ResponseEntity<String> criarCheckout(Checkout checkout) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(bearerToken);
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(bearerToken);
 
-        HttpEntity<Checkout> request = new HttpEntity<>(checkout, headers);
-
+        HttpEntity<Checkout> request = new HttpEntity<>(checkout, header);
 
         return restTemplate.postForEntity(pagBankUrl, request, String.class);
     }
 
     public ResponseEntity<String> getCheckoutById(String id){
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(bearerToken);
+        HttpHeaders header = new HttpHeaders();
+        header.setBearerAuth(bearerToken);
         RequestEntity<Void> requestEntity = RequestEntity
                 .get(pagBankUrl + "/" + id)
-                .headers(headers)
+                .headers(header)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+        return restTemplate.exchange(requestEntity, String.class);
+    }
+
+    public ResponseEntity<String> inactivateCheckout(String id){
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        header.setBearerAuth(bearerToken);
+        RequestEntity<Void> requestEntity = RequestEntity
+                .post(pagBankUrl + "/" + id + "/inactivate")
+                .headers(header)
                 .accept(MediaType.APPLICATION_JSON)
                 .build();
 
         return restTemplate.exchange(requestEntity, String.class);
+    }
+
+    public ResponseEntity<String> ActivateCheckout(String id){
+        return null;
     }
 }

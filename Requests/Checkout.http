@@ -7,8 +7,8 @@ Content-Type: application/json
 {
   "reference_id": "pedido123",
   "customer": {
-    "name": "Josivan Pereira",
-    "email": "Josivan@email.com",
+    "name": "Roberto Raimundo",
+    "email": "Roberto@email.com",
     "tax_id": "12345678909",
     "phones": [
       {
@@ -21,9 +21,9 @@ Content-Type: application/json
   },
   "items": [
     {
-      "name": "Camiseta Preta",
+      "name": "Havaianas",
       "quantity": 1,
-      "description": "camiseta polo preta gg",
+      "description": "chinela - Havaianas n.42 branca",
       "unit_amount": 5000
     }
   ],
