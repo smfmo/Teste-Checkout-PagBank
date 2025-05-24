@@ -23,7 +23,6 @@ Content-Type: application/json
     {
       "name": "Havaianas",
       "quantity": 1,
-      "description": "chinela - Havaianas n.42 branca",
       "unit_amount": 5000
     }
   ],

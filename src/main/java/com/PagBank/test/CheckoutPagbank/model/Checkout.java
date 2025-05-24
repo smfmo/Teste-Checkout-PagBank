@@ -3,9 +3,9 @@ package com.PagBank.test.CheckoutPagbank.model;
 import com.PagBank.test.CheckoutPagbank.model.Enum.CheckoutStatus;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
@@ -15,16 +15,18 @@ public class Checkout {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String checkout_id;
+    private UUID checkout_id;
 
     @Column(name = "reference_id",
             length = 64)
     private String reference_id;
 
+    @CreatedDate
     @Column(name = "expiration_date")
-    private Timestamp expiration_date;
+    private LocalDateTime expiration_date;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @Column(name = "customer_modifiable")
@@ -76,13 +78,14 @@ public class Checkout {
     @Column(name = "payment_notification_url")
     private List<String> payment_notification_urls = new ArrayList<>();
 
+    @CreatedDate
     @Column(name = "created_at")
-    private Timestamp created_at;
+    private LocalDateTime created_at;
 
     @Enumerated(EnumType.STRING)
     private CheckoutStatus status = CheckoutStatus.ACTIVE;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "checkout_id")
-    private List<CheckoutLink> links = new ArrayList<>();
+    private List<Links> links = new ArrayList<>();
 }

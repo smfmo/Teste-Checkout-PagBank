@@ -8,7 +8,7 @@ import lombok.Data;
 @Entity
 @Table(name = "checkout_links")
 @Data
-public class CheckoutLink {
+public class Links {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

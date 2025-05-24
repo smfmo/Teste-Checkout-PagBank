@@ -1,13 +1,17 @@
 package com.PagBank.test.CheckoutPagbank.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
+import jakarta.persistence.*;
 import lombok.Data;
 
-@Embeddable
+import java.util.UUID;
+
+@Entity
 @Data
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "customer_name",
             length = 120)

@@ -1,6 +1,8 @@
 package com.PagBank.test.CheckoutPagbank.service;
 
 import com.PagBank.test.CheckoutPagbank.model.Checkout;
+import com.PagBank.test.CheckoutPagbank.model.Enum.CheckoutStatus;
+import com.PagBank.test.CheckoutPagbank.repository.CheckoutRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class PagBankService {
 
     private final RestTemplate restTemplate;
+    private final CheckoutRepository checkoutRepository;
 
     @Value("${pagBank.api.bearer_token}")
     private String bearerToken;
@@ -20,13 +23,19 @@ public class PagBankService {
     private String pagBankUrl;
 
     public ResponseEntity<String> criarCheckout(Checkout checkout) {
+
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         header.setBearerAuth(bearerToken);
 
         HttpEntity<Checkout> request = new HttpEntity<>(checkout, header);
 
-        return restTemplate.postForEntity(pagBankUrl, request, String.class);
+        return restTemplate
+                .postForEntity(
+                        pagBankUrl,
+                        request,
+                        String.class
+                );
     }
 
     public ResponseEntity<String> getCheckoutById(String id){
